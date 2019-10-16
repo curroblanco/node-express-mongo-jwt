@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const DB_URL = "mongodb://root:root@mongo:27017/movies?authSource=admin&authMechanism=SCRAM-SHA-1";
 require('./model/movie');
@@ -12,6 +13,7 @@ mongoose.connection;
 
 const app = express();
 app.use(bodyParser.json({ type: 'application/json' }));
+app.options('*', cors());
 
 const movieRoutes = require('./routes/movieRoutes');
 const actorRoutes = require('./routes/actorRoutes');
